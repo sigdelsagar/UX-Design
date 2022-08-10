@@ -17,10 +17,7 @@ public class NavHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetMouseButtonDown(0))
-        {
-            PlayClickSound();
-        }
+       
     }
 
 
@@ -35,6 +32,7 @@ public class NavHelper : MonoBehaviour
 
     public void LoadScreen(string sceneName)
     {
+        PlayClickSound();
         StartCoroutine(ChangeScene(sceneName));
     }
 
