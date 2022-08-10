@@ -10,6 +10,7 @@ public class ARController : MonoBehaviour
     public GameObject CursorChildObject;
     public GameObject MyObject;
     public ARRaycastManager RaycastManager;
+    public AudioClip ObjectSound;
     public bool UseCursor = false;
 
 
@@ -46,6 +47,7 @@ public class ARController : MonoBehaviour
                 if (touches.Count > 0)
                 {
                     GameObject.Instantiate(MyObject, touches[0].pose.position, new Quaternion(0,180,0,0));
+                    PlayClickSound();
                 }
             }
         }
@@ -63,5 +65,15 @@ public class ARController : MonoBehaviour
             transform.position = hits[0].pose.position;
             transform.rotation = hits[0].pose.rotation;
         }
+    }
+
+
+    private void PlayClickSound()
+    {
+        GameObject go = new GameObject("ClickSound");
+        AudioSource audioSource = go.AddComponent<AudioSource>();
+        audioSource.clip = ObjectSound;
+        audioSource.Play();
+        Destroy(go, ObjectSound.length);
     }
 }
