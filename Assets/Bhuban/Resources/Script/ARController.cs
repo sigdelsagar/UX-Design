@@ -37,7 +37,8 @@ public class ARController : MonoBehaviour
 
             if (UseCursor)
             {
-                GameObject.Instantiate(MyObject, transform.position, transform.rotation);
+                GameObject.Instantiate(MyObject, transform.position, new Quaternion(0,180,0,0));
+                PlayCatSound();
             }
             else
             {
@@ -47,7 +48,7 @@ public class ARController : MonoBehaviour
                 if (touches.Count > 0)
                 {
                     GameObject.Instantiate(MyObject, touches[0].pose.position, new Quaternion(0,180,0,0));
-                    PlayClickSound();
+                    PlayCatSound();
                 }
             }
         }
@@ -68,9 +69,9 @@ public class ARController : MonoBehaviour
     }
 
 
-    private void PlayClickSound()
+    private void PlayCatSound()
     {
-        GameObject go = new GameObject("ClickSound");
+        GameObject go = new GameObject("CatSound");
         AudioSource audioSource = go.AddComponent<AudioSource>();
         audioSource.clip = ObjectSound;
         audioSource.Play();
